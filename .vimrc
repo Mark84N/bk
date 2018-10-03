@@ -9,12 +9,16 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+" colorscheme
 Plugin 'w0ng/vim-hybrid'
 Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/nerdtree'
+" colorscheme
 Plugin 'morhetz/gruvbox'
 Plugin 'vim-airline/vim-airline'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'airblade/vim-gitgutter'
+"Plugin 'vim-syntastic/syntastic'
 
 " Plugin 'vim-scripts/taglist.vim'
 " Plugin 'sickill/vim-monokai'
@@ -56,6 +60,7 @@ set tabstop=4
 set shiftwidth=4
 set background=dark
 set relativenumber
+set hlsearch
 
 " Color scheme
  set t_Co=256
@@ -64,8 +69,12 @@ set relativenumber
 
 colorscheme gruvbox
 let g:gruvbox_contrast_dark='light'
+
+" ######## GitGutter ########
+let g:gitgutter_signs = 1
+let g:gitgutter_enabled = 1
+
 " colorscheme molokai
-" colorscheme hybrid
 " let g:molokai_original = 1
 
 " ############################# Cscope funcs ################################
@@ -117,11 +126,31 @@ endfunction
 
 au BufEnter /* call LoadCscope()
 
-set hlsearch
-
-"################################ SHOW TABS ###############################
+" Show spaces and tabs
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 map <F4> :set list!<CR>
 
-"############################### TAGBAR ##################################
+" ###### Tagbar: ######
+" Show tag inside the file
 nmap <F2> :TagbarToggle<CR>
+" #####################
+
+"###### Syntastic: ######
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+" ########################
+
+" Show more than 80 symbols in row
+" highlight OverLength ctermbg=darkmagenta ctermfg=white guibg=#592929
+" match OverLength /\%81v.\+/
+"
+" Draw vertical line on the 80th column
+" highlight ColorColumn ctermbg=lightgrey guibg=lightgrey
+" set colorcolumn=80
+
